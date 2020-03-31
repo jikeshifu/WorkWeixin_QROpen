@@ -36,7 +36,12 @@
 										<td  class="zdy-hidden">{$list[key].sn}</td>
 										<td  class="zdy-hidden">{$list[key].sim}</td>
 										<td>
-											<a href="admin.php?ac=qrcode&id={$list[key].id}" target="_blank"><i class="icon icon-qrcode"></i></a>
+                                           {if $list[key].type==3}
+											第1路：<a href="admin.php?ac=qrcode&id={$list[key].id}&line=1" target="_blank"><i class="icon icon-qrcode"></i></a>
+                                            第2路：<a href="admin.php?ac=qrcode&id={$list[key].id}&line=2" target="_blank"><i class="icon icon-qrcode"></i></a>
+                                           {else}
+                                            <a href="admin.php?ac=qrcode&id={$list[key].id}" target="_blank"><i class="icon icon-qrcode"></i></a>
+                                           {/if}
 										</td>
 										<td>{$list[key].online}&nbsp;&nbsp;{$list[key].state}</td>
 										<td><a href="admin.php?ac=list&do=del&id={$list[key].id}"><i class="icon icon-del"></i></a></td>

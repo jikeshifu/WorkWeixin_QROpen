@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-11-01 23:20:02
+/* Smarty version 3.1.30, created on 2018-04-10 19:21:57
   from "/www/wwwroot/1.tellnet.cn/templates/admin_key.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59f9e622cffc05_55201183',
+  'unifunc' => 'content_5acc9e55058b16_94257147',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '76baece4d24fa15cda681fc83020f79abf44f26d' => 
     array (
       0 => '/www/wwwroot/1.tellnet.cn/templates/admin_key.html',
-      1 => 1509548139,
+      1 => 1523359287,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:admin_footer.html' => 1,
   ),
 ),false)) {
-function content_59f9e622cffc05_55201183 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5acc9e55058b16_94257147 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:admin_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -51,6 +51,7 @@ $_smarty_tpl->_subTemplateRender("file:admin_header.html", $_smarty_tpl->cache_i
 										<th>拥有人</th>
 										<th>门禁名称</th>
 										<th>获得时间</th>
+                                        <th>授权</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -70,6 +71,17 @@ for ($__section_key_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_ke
 </td>
 										<td><?php echo $_smarty_tpl->tpl_vars['list']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_key']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_key']->value['index'] : null)]['add_time'];?>
 </td>
+                                        <td>
+                                      		<?php if ($_smarty_tpl->tpl_vars['list']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_key']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_key']->value['index'] : null)]['isauth'] == 1) {?>
+                                          	<a href="javascript:;" onclick="change(<?php echo $_smarty_tpl->tpl_vars['list']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_key']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_key']->value['index'] : null)]['key_id'];?>
+);" id="isauth_<?php echo $_smarty_tpl->tpl_vars['list']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_key']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_key']->value['index'] : null)]['key_id'];?>
+"><span class="label label-success">有权限</span></a>
+                                          	<?php } else { ?>
+                                          	<a href="javascript:;" onclick="change(<?php echo $_smarty_tpl->tpl_vars['list']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_key']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_key']->value['index'] : null)]['key_id'];?>
+);" id="isauth_<?php echo $_smarty_tpl->tpl_vars['list']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_key']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_key']->value['index'] : null)]['key_id'];?>
+"><span class="label label-warning">无权限</span></a>
+                                          	<?php }?>
+                                      	</td>
 									</tr>
 									<?php
 }
@@ -89,6 +101,31 @@ $_smarty_tpl->tpl_vars['__smarty_section_key'] = $__section_key_0_saved;
 		</div>
 	</div>
 </div>
+
+<?php echo '<script'; ?>
+>
+function change(id) {
+	$.ajax({
+		url: "admin.php?ac=key",
+		data:{
+			'id' : id,
+		},
+		type:'post',
+		dataType:'json',
+		timeout : 5000,
+		success: function(data) {
+			if (data.auth == 1) {
+				$('#isauth_' + id).html('<span class="label label-success">有权限</span>');
+			} else {
+				$('#isauth_' + id).html('<span class="label label-warning">无权限</span>');
+			}
+		},
+	});
+	return false;
+}
+<?php echo '</script'; ?>
+>
+
 <div class="clearfix"></div>
 <?php $_smarty_tpl->_subTemplateRender("file:admin_footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

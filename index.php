@@ -83,6 +83,12 @@ if(!$user_info_m['UserId']) {
 	if ($_GET['id']) {
 		
 		$lock = $db->getRow('select * from locks where id='.$_GET['id']);
+        $line="0";
+        if($_GET['line'])
+        {
+          $line = $_GET['line'];
+        }
+          
 		//echo $_GET['id'];
 		$key = $db->getRow('select * from user_key where uid='.$user['id'].' AND lock_id='.$lock['id']);
 		
@@ -92,6 +98,7 @@ if(!$user_info_m['UserId']) {
 				'uid' => $user['id'],
 				'lock_id' => $lock['id'],
 				'add_time' => time(),
+                'isauth' => 0,
 			);
 			
 			$db->insert("user_key", $key_arr);
@@ -105,7 +112,7 @@ if(!$user_info_m['UserId']) {
 						'value' => '',
 					),
 					'keyword1' => array(
-						'value' => $user_info_m['nickname'],
+						'value' => $user_info_d['name'],
 					),
 					'keyword2' => array(
 						'value' => $lock['name'],
@@ -129,8 +136,20 @@ if(!$user_info_m['UserId']) {
 		if ($config['aeskey']) {
 			$lock['sn'] = aesEncrypt($lock['sn'], $config['aeskey']);
 		}
+        $authkey = $db->getRow('select * from user_key where uid='.$user['id'].' AND lock_id='.$lock['id']);
+        //print_r($authkey['isauth']);
+		if($authkey['isauth'])
+        {
+          if($lock['type']==3)
+          {
+            $result = httpPost('https://www.wmj.com.cn/api/openlock.html?appid='.$config['appid'].'&appsecret='.$config['appsecret'].'&line='.$line, $lock['sn']);
+            //print_r($result);
+          }
+          else
+          {
+            $result = httpPost('https://www.wmj.com.cn/api/openlock.html?appid='.$config['appid'].'&appsecret='.$config['appsecret'], $lock['sn']);
+          }
 		
-		$result = httpPost('https://www.wmj.com.cn/api/openlock.html?appid='.$config['appid'].'&appsecret='.$config['appsecret'], $lock['sn']);
 	    //echo $result;
 		$result = json_decode(trim($result, "\xEF\xBB\xBF"), true);
 		
@@ -155,7 +174,17 @@ if(!$user_info_m['UserId']) {
 			);
 		}
 		
-	} else {
+	}
+      else
+      {
+        $data = array(
+				'state' => 0,
+				'msg'   => '没有权限！',
+			);
+      }
+    }
+  else 
+  {
 		
 	}
 	

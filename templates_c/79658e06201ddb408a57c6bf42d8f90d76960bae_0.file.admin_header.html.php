@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-11-01 23:19:49
+/* Smarty version 3.1.30, created on 2018-04-10 16:27:36
   from "/www/wwwroot/1.tellnet.cn/templates/admin_header.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59f9e615138372_63322028',
+  'unifunc' => 'content_5acc757881cc48_71979676',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '79658e06201ddb408a57c6bf42d8f90d76960bae' => 
     array (
       0 => '/www/wwwroot/1.tellnet.cn/templates/admin_header.html',
-      1 => 1509548139,
+      1 => 1523348692,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59f9e615138372_63322028 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5acc757881cc48_71979676 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="cn" class="fullscreen-bg">
@@ -33,6 +33,9 @@ function content_59f9e615138372_63322028 (Smarty_Internal_Template $_smarty_tpl)
 	<link rel="stylesheet" href="static/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="static/assets/css/main.css">
 	<link rel="stylesheet" href="static/iconfont/style.css">
+  	<?php echo '<script'; ?>
+ src="static/assets/js/jquery.min.js"><?php echo '</script'; ?>
+>
 </head>
 <body>
 <div id="wrapper">

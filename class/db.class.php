@@ -13,9 +13,9 @@ class ConnectMysqli {
 		
 		$this->host    = 'localhost';
 		$this->port    = 3306;
-		$this->user    = 'dbuser';
-		$this->pass    = 'YaBACs6HwRtsNtN';
-		$this->db      = 'dbname';
+		$this->user    = 'tellnet_cn';
+		$this->pass    = 'hiamPKZ4kEwh4';
+		$this->db      = 'zhl_tellnet_cn';
 		$this->charset = 'UTF-8';
 		//连接数据库
 		$this->db_connect();

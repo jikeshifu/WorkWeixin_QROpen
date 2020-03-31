@@ -26,17 +26,25 @@ if ($_POST) {
  
 	$result = json_decode(trim($postlock, "\xEF\xBB\xBF"), true);
 	
-	if ($result['state']) {
-		
+	if ($result['state']) 
+    {
+		$sn = $_POST['sn'];
 		$data = array(
 			'name'  => $_POST['name'],
-			'sn'    => $_POST['sn'],
+			'sn'    => $sn,
 		);
 		
-		if ($_POST['sim']) {
+		if ($_POST['sim'])
+        {
 			$data['sim'] = $_POST['sim'];
 		}
-		
+		if(substr($sn, 0, 5) == 'WMJ16' || substr($sn, 0, 5) == 'WMJ18') 
+        {
+				$data['type'] = 1;
+		}
+        if(substr($sn, 0, 5) == 'WMJ11' || substr($sn, 0, 5) == 'WMJ13') {
+				$data['type'] = 3;
+			}
 		$db->insert("locks", $data);
 	}
 	

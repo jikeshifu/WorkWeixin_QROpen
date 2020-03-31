@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-11-01 23:19:49
+/* Smarty version 3.1.30, created on 2018-04-10 14:52:13
   from "/www/wwwroot/1.tellnet.cn/templates/admin_setting.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59f9e61512d9c7_71833614',
+  'unifunc' => 'content_5acc5f1dcdaa12_97377175',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '03d27982642bb4adf1acbc8c6d669f03c5bfe858' => 
     array (
       0 => '/www/wwwroot/1.tellnet.cn/templates/admin_setting.html',
-      1 => 1509548139,
+      1 => 1523343121,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:admin_footer.html' => 1,
   ),
 ),false)) {
-function content_59f9e61512d9c7_71833614 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5acc5f1dcdaa12_97377175 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:admin_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -33,16 +33,19 @@ $_smarty_tpl->_subTemplateRender("file:admin_header.html", $_smarty_tpl->cache_i
 				<div class="col-md-12">
 					<div class="panel">
 						<div class="panel-heading">
-							<h3 class="panel-title">微信公众号设置</h3>
+							<h3 class="panel-title">企业微信设置</h3>
 						</div>
 						<div class="panel-body">
 							<form class="form-auth-small" action="admin.php?ac=setting" method="post">
 								<input type="hidden" name="weixin" value="weixin"/>
 								<input type="text" name="appid" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['weixin']->value['appid'];?>
-" placeholder="请输入公众号的APPID">
+" placeholder="请输入企业微信的corpid">
 								<br/>
 								<input type="text" name="appsecret" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['weixin']->value['appsecret'];?>
-" placeholder="请输入公众号的APPSECRET">
+" placeholder="请输入企业微信的corpsecret">
+								<br/>
+                                <input type="text" name="agentid" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['weixin']->value['agentid'];?>
+" placeholder="请输入企业微信应用的agentid">
 								<br/>
 								<input type="text" name="tpl_msg" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['weixin']->value['tpl_msg'];?>
 " placeholder="模板消息ID，模板标题：智能钥匙提取通知">
