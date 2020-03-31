@@ -1,0 +1,79 @@
+{include file="admin_header.html"}
+
+<style>
+@media screen and (max-width: 767px) {
+	.zdy-hidden{
+		display: none;
+	}
+}
+</style>
+
+<div class="main">
+	<div class="main-content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">钥匙列表</h3>
+						</div>
+						<div class="panel-body">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>拥有人</th>
+										<th>门禁名称</th>
+										<th>获得时间</th>
+                                        <th>授权</th>
+									</tr>
+								</thead>
+								<tbody>
+									{section name=key loop=$list}
+									<tr>
+										<td><img src="{$list[key].avatar}" style="width: 20px;"/>&nbsp;&nbsp;{$list[key].nickname}</td>
+										<td>{$list[key].name}</td>
+										<td>{$list[key].add_time}</td>
+                                        <td>
+                                      		{if $list[key].isauth eq 1}
+                                          	<a href="javascript:;" onclick="change({$list[key].key_id});" id="isauth_{$list[key].key_id}"><span class="label label-success">有权限</span></a>
+                                          	{else}
+                                          	<a href="javascript:;" onclick="change({$list[key].key_id});" id="isauth_{$list[key].key_id}"><span class="label label-warning">无权限</span></a>
+                                          	{/if}
+                                      	</td>
+									</tr>
+									{/section}
+								</tbody>
+							</table>
+							{$page_str}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+function change(id) {
+	$.ajax({
+		url: "admin.php?ac=key",
+		data:{
+			'id' : id,
+		},
+		type:'post',
+		dataType:'json',
+		timeout : 5000,
+		success: function(data) {
+			if (data.auth == 1) {
+				$('#isauth_' + id).html('<span class="label label-success">有权限</span>');
+			} else {
+				$('#isauth_' + id).html('<span class="label label-warning">无权限</span>');
+			}
+		},
+	});
+	return false;
+}
+</script>
+
+<div class="clearfix"></div>
+{include file="admin_footer.html"}

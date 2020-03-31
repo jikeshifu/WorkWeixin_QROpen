@@ -1,0 +1,29 @@
+{include file="admin_header.html"}
+
+<div class="main">
+	<div class="main-content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">用户列表</h3>
+						</div>
+						<div class="panel-body">
+							<table class="table table-bordered">
+								{section name=key loop=$list}
+								<tr>
+									<td><img src="{$list[key].avatar}" style="width: 40px;"/>&nbsp;&nbsp;{$list[key].nickname}</td>
+								</tr>
+								{/section}
+							</table>
+							{$page_str}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+{include file="admin_footer.html"}
